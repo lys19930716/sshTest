@@ -1,0 +1,134 @@
+<ul>
+版本控制管理器
+	集中式版本控制管理器
+	SVN
+	分布式版本控制管理器
+	git GitHub社区
+
+shell指令
+1.pwd
+	print working directory
+	打印当前所在路径
+2.cd
+	change directory
+	切换工作路径
+	cd F:  切换到F盘
+	cd aa  切换到当前目录下的aa目录中
+	cd ~ 切换到当前用户的主目录
+3.Is
+	list
+	显示当前目录下所有的文件或目录
+	Is -l 显示所有文件目录,列表显示
+	Is -ah 显示所有的文件或目录,包括隐藏的内容
+	Is -t 以时间顺序排序
+	Is -lt 以列表形式按照时间孙便显示当前目录下所有的文件或目录
+	临时-R 以层级关系显示当前目录下的所有文件或目录,包括子文件和子目录
+4, mkdir
+	make directory
+	新建文件夹
+	mkdir 文件夹名 在当前目录下创建一个文件夹
+	如果文件夹已存在,则会报错
+	mkdir a b 同时创建 a,b 2个文件夹
+	mkdir a/b 在 a 文件夹下创建 b 文件夹
+	mkdir -p c/d 如果 c 文件夹不存在,则先创建c文件夹,在床架d文件夹
+5.touch 
+	创建文件
+	tocuh 文件名 在当前目录下创建一个文件
+	如果文件已存在,再次使用该命令不会错,只会修改问价的最后访问时间
+	touch 文件夹名 修改文件夹最后访问时间
+6. rmdir --remove directory
+删除空文件夹
+	rmdir a 删除 a文件夹(a为空文件夹)
+7.rm
+	remove
+	rm文件名 删除指定文件
+	rm -rf 文件夹名 删除非空文件夹
+8. cp
+	copy
+	cp 1.txt 2.txt 复制,txt 名为2.txt
+	cp 1.txt a/2.txt 复制1.txt到 a文件夹下 重命名为2.txt
+9.mv
+	move
+	mv 1.txt a/1.txt 将当前目录下的1.txt移动到a目录下
+	mv 1.txt 2.txt 将当前目录下的1.txt重命名为2.txt 
+10.cat
+cat 1.txt 查看1.txt 文件里的内容
+11.vi
+vi 文件名 向文件中输入数据
+如果文件不存在 ,则先创建文件 ,然后进入vi界面
+vi文件名首先进入的而是命令模式, 可以通过指令切换到输入模式或者底行模式
+i 或 a 切换到输入模式,输入结束之后按esc退出输入模式进入命令模式,shift+: 进入底行模式输入wq回车退出vi编辑器
+w write 写入数据
+q quit 退出
+q! 不保存,强制退出
+12. diff
+	difference
+	diff 1.txt 2.txt  比较1.txt和2.txt文件
+
+
+先删除d 下面aa目录
+创建目录dirTxst
+进入目录没在该目录中创建3个目录 a b c
+创建文件1.txt 并写入数据
+复制 1,txt 赋值到a 目录取名为2.txt
+编辑2.txt 修改其中数据 删除一行 新添加一行 修改某一行的数据
+在b目录下创建目录 c/d
+删除c目录
+
+git 命令的使用
+所有的git命令都是以git 开头的
+1.配置用户信息
+	git config --global user.name "你的用户名"
+	git config --global user.email "你的邮箱"
+2.初始化仓库
+	先进入目标文件夹
+	git init
+	自动生成一个 .git的隐藏文件夹
+3.查看仓库的状态
+	git status
+4.提交
+	git add 文件名 将该文件提交到暂存区
+	git add -A 将所有修改的提交到暂存区
+	git commit -m "提交说明"  提交到仓库去
+5.git diff
+	查看两次的区别,当前与上一次提交时的区别
+6.取消修改
+	1,没有提交到暂存区时,撤销工作区的修改
+	git checkout -- 文件名 取消还未add ,也没有commit的文件的修改
+	2,提交到暂存区(add) ,但是还没有commit 
+	先回退到 add 将暂存区的修改取消 然后在取消工作区的修改
+	git reset HEAD 文件名 将add 取消
+	之后再使用git checkout -- 文件名 取消仓库的修改
+	已结 add,并取消commit了,取消仓库的修改
+	版本回退
+	git reset --hard 提交的id
+7.查看存盘点(commit的历史记录)
+	git log
+	git log --pretty=oneline
+	git reflog 查看所有提交的信息 包括回退的操作
+8.gitstatus 会忽略空文件夹
+	提交也会忽略空文件夹
+9.HEAD 村盘点,实现版本控制
+	git中把每一次的提交串成一条时间线,这个时间线就是一条分支,默认只有一条分支master ,也称之为主分支 ,HEAD 指向就是当前分支
+10.查看当前分支
+	git branch 前面有* 表示是当前所在分支
+11.创建分支
+	git branch 分支名称
+12.切换分支
+	git checkout 分支名称
+13.合并分支
+	git merge 分支名称
+	在master 分支下使用git merge
+	v1.1 会将v1.1的修改合并到master中,v1.1中的内容不会改变
+
+	如果在v1.1中使用git merge master ,则将master的修改合并到v1.1中
+
+	1.在v1.1中修改1.txt的内容并提交
+	2.切换到merge分支,查看1.txt是否被修改
+	3.修改master分支中的1,txt 并提交
+	4.切换到v1.1分支,查看1.txt是否被修改
+14,删除分支
+	git branch -d 分支名称
+	不能在当前分支删除自己
+	git branch -D 分支名称  强制删除
+</ul>
